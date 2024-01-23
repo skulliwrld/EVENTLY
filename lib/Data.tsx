@@ -9,7 +9,7 @@ export const NavItems=[
     },
     {
         title:'Create Events',
-        link:"/create-events",
+        link:"events/create-events",
         icons:<FaPeopleGroup />
     },
     {
