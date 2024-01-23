@@ -29,7 +29,7 @@ function Dropdown(props:{value:string, onchangeHandler:()=> void}) {
     }
   return (
     <section>
-        <Select onChange ={props.onchangeHandler} value={props.value}>
+        <Select onValueChange ={props.onchangeHandler} defaultValues={props.value}>
             <SelectTrigger className="select-field">
             <SelectValue placeholder="Categories" />
             </SelectTrigger>
