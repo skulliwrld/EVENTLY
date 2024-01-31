@@ -6,6 +6,8 @@ function page() {
 
     const { sessionClaims} = auth()
     const userId =sessionClaims?.userId as string
+    console.log(userId)
+    
 
   return (
     <>
@@ -13,7 +15,7 @@ function page() {
             <h3 className="wrapper h3-bold text-center sm:text-left">Create Events</h3>
         </section>
         <div className="wrapper my-8">
-            <EventForm userId={userId} type="create"  />
+            <EventForm type="Create" userId={userId}/>
         </div>
     </>
   )

@@ -1,8 +1,16 @@
 import Hero from '@/components/Hero'
+import EventsCollections from '@/components/shared/Collection'
+import { getAllEvents } from '@/lib/actions/events.actions'
 
 
-export default function Home() {
-  
+export default async function Home() {
+ 
+    const EVENTS = await getAllEvents({
+        query: "",
+        category: "",
+        page:1,
+        limit: 6
+    })
   return (
     <main>
      <Hero />
@@ -14,6 +22,15 @@ export default function Home() {
           search
           category
         </div>
+        <EventsCollections
+            data={EVENTS.data}
+            emptyStateSubtext = "Come Back Later"
+            emptyTitle="No Events Found" 
+            collectionType = "All_Events"
+            limit={6}
+            page={1}
+            totalPage={2}
+        />
      </section>
     </main>
   )

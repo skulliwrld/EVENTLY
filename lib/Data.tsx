@@ -1,4 +1,4 @@
-import { FaAddressBook, FaHome, FaProjectDiagram } from "react-icons/fa";
+import { FaHome, FaProjectDiagram } from "react-icons/fa";
 import { FaPeopleGroup } from "react-icons/fa6";
 
 export const NavItems=[
@@ -9,7 +9,7 @@ export const NavItems=[
     },
     {
         title:'Create Events',
-        link:"/create-events",
+        link:"/events/create-events",
         icons:<FaPeopleGroup />
     },
     {

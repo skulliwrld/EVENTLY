@@ -1,4 +1,4 @@
-import React, { startTransition, useState } from 'react'
+import { startTransition, useEffect, useState } from 'react'
 import {Select,SelectContent,SelectItem,SelectTrigger,SelectValue,
 } from "@/components/ui/select"
 
@@ -17,6 +17,7 @@ import {
 
 import { ICategory } from '@/models/category.model'
 import { Input } from '../ui/input'
+import { GetCategories, addCategory } from '@/lib/actions/category.actions'
   
 
 
@@ -25,8 +26,22 @@ function Dropdown(props:{value:string, onchangeHandler:()=> void}) {
     const [newCategory, setNewCategory] = useState("")
 
     const handleAddCategory = () =>{
-        
+        addCategory({
+            categoryName:newCategory.trim()
+        }).then((category) =>{
+            setCategories((prevState) =>[...prevState, category])
+        })   
     }
+
+    
+    useEffect(() =>{
+        const getAllCategories = async () =>{
+             const categoryList = await GetCategories();
+
+             categoryList && setCategories(categoryList as ICategory[])
+        }
+        getAllCategories();
+    },[])
   return (
     <section>
         <Select onValueChange ={props.onchangeHandler} defaultValue={props.value}>

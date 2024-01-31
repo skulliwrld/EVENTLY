@@ -28,12 +28,11 @@ export const NavBar = () => {
   }
   return (
     <header className="w-full border-b">
-      <div className="wrapper flex justify-between items-center">
-        <div>
+      <div className="wrapper flex justify-between items-center"> 
           <Link href="/">
-          <Image src="/assets/icons/cover.png" className="rounded-md" alt="logo" width={128} height={40}/>
+            <Image src="/assets/icons/cover.png" className="rounded-md" alt="logo" width={128} height={40}/>
           </Link>
-        </div>
+       
         {/* Desktop view */}
         <div className=" md:flex justify-between gap-3 hidden">
           {NavItems.map((data) =>(
