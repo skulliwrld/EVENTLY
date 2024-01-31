@@ -6,9 +6,11 @@ import { SlCalender } from 'react-icons/sl'
 import { formatDateTime } from '@/lib/utils'
 
 interface EventsProps {
-    events:any[]
+    events:IEvent,
+    hasPrice?:boolean
+    hasOrderLink?:boolean
 }
-function Card({events}:EventsProps) {
+function Card({events,hasPrice,hasOrderLink}:EventsProps) {
   return (
     <section className="flex flex-col bg-primary-50 bg-dotted-pattern bg-contain rounded-lg px-5 py-2 shadow-md hover:shadow">
         <Link href={`events/${events._id}`}>

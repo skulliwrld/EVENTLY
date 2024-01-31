@@ -23,7 +23,7 @@ export default async function Home() {
           category
         </div>
         <EventsCollections
-            data={EVENTS.data}
+            data={EVENTS?.data}
             emptyStateSubtext = "Come Back Later"
             emptyTitle="No Events Found" 
             collectionType = "All_Events"

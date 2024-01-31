@@ -3,7 +3,7 @@ import React from 'react'
 import Card from './Card'
 
 interface CollectionProps{
-    data:any[],
+    data:IEvent[],
     emptyTitle:string,
     emptyStateSubtext:string,
     limit:number,
@@ -19,9 +19,22 @@ function EventsCollections({data, emptyTitle,emptyStateSubtext,limit, totalPage=
         {data.length > 0 ? (
             <div className="flex flex-col items-center gap-10">
                 <ul className="grid grid-cols-1 w-full gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:gap-10">
-                    {data.map((EventDatas) =>(
-                        <Card key={EventDatas._id} events={EventDatas} />
-                    ))}
+                    
+                        {data.map((event) =>{
+                        const hasOrderLink = collectionType === 'Events_Organized';
+
+                        const hidePrice = collectionType === "My_Tickets"
+
+                        return (
+                            <li key={event._id}>
+                                <Card events={event} hasOrderLink={hasOrderLink} hidePrice={hidePrice} />
+                            </li>
+                        )}
+
+
+                        )}
+                
+                    
                 </ul>
                 
             </div>
