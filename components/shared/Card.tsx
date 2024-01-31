@@ -7,10 +7,10 @@ import { formatDateTime } from '@/lib/utils'
 
 interface EventsProps {
     events:IEvent,
-    hasPrice?:boolean
-    hasOrderLink?:boolean
+    // hasPrice?:boolean
+    // hasOrderLink?:boolean
 }
-function Card({events,hasPrice,hasOrderLink}:EventsProps) {
+function Card({events}:EventsProps) {
   return (
     <section className="flex flex-col bg-primary-50 bg-dotted-pattern bg-contain rounded-lg px-5 py-2 shadow-md hover:shadow">
         <Link href={`events/${events._id}`}>
