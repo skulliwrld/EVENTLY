@@ -16,8 +16,8 @@ import {
 import { usePathname } from 'next/navigation'
 import { deleteEvent } from '@/lib/actions/events.actions'
 
-interface dataDelete {
-    eventId:String
+type dataDelete = {
+    eventId:string
 }
 function DeleteEvents({eventId}:dataDelete) {
     const pathName = usePathname()
