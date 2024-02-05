@@ -15,7 +15,7 @@ function page() {
             <h3 className="wrapper h3-bold text-center sm:text-left">Create Events</h3>
         </section>
         <div className="wrapper my-8">
-            <EventForm type="Create" userId={userId}/>
+            <EventForm type="Create" userId={userId} eventId=""/>
         </div>
     </>
   )
