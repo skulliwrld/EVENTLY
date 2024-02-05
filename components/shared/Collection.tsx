@@ -21,13 +21,14 @@ function EventsCollections({data, emptyTitle,emptyStateSubtext,limit, totalPage=
                 <ul className="grid grid-cols-1 w-full gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:gap-10">
                     
                         {data.map((event) =>{
-                        // const hasOrderLink = collectionType === 'Events_Organized';
+                        const hasOrderLink = collectionType === 'Events_Organized';
 
-                        // const hidePrice = collectionType === "My_Tickets"
+                        const hidePrice = collectionType === "My_Tickets"
 
                         return (
                             <li key={event._id}>
-                                <Card events={event}/>
+                                <Card events={event} hasOrderLink={hasOrderLink}
+                                 hidePrice={hidePrice}/>
                             </li>
                         )}
 

@@ -23,35 +23,46 @@ import { GoLink } from "react-icons/go";
 import {useUploadThing} from "@/lib/uploadthing"
 
 import { useRouter } from "next/navigation"
-import { createEvent } from "@/lib/actions/events.actions"
+import { createEvent, updateEvent } from "@/lib/actions/events.actions"
+import { IEvent } from "@/models/event.model"
 
 
 type EventFormProps = {
     userId:string,
-    type: "Create" | "Update"
+    type: "Create" | "Update",
+    event?:IEvent,
+    eventId:string
 }
 
-function EventForm({userId, type}: EventFormProps) {
+function EventForm({userId, type, event, eventId}:EventFormProps) {
     const [files, setFiles] = useState<File[]>([])
     
     const Router = useRouter()
+
+    const defaultValue = {
+        title: "",
+        location:"",
+        imageUrl:"",
+        price:"",
+        endDateTime: new Date(),
+        startDateTime:new Date(),
+        isFree:false,
+        url:"",
+        categoryId:"",
+        description:""
+      }
+
+    const initialValue = event && type ==="Update" ? { ...event,
+        startDateTime:new Date(event.startDateTime),
+        endDateTime:new Date(event.endDateTime)
+
+    }:defaultValue
 
     const {startUpload} = useUploadThing("imageUploader")
     // 1. Define your form.
     const form = useForm<z.infer<typeof EvenFormSchema>>({
     resolver: zodResolver(EvenFormSchema),
-    defaultValues: {
-      title: "",
-      location:"",
-      imageUrl:"",
-      price:"",
-      endDateTime: new Date(),
-      startDateTime:new Date(),
-      isFree:false,
-      url:"",
-      categoryId:"",
-      description:""
-    },
+    defaultValues: initialValue
   })
  
   // 2. Define a submit handler.
@@ -81,6 +92,30 @@ function EventForm({userId, type}: EventFormProps) {
             
         }
     }
+
+    if (type === "Update"){
+        if(!eventId){
+            Router.back()
+            return
+        }
+
+        try {
+           const updatedEvent = await updateEvent({
+            event:{...values, imageUrl: uploadImageUrl, _id:eventId},
+            userId,
+            path:`/events/${eventId}`    
+           }) 
+
+           if(updatedEvent){
+            form.reset();
+            Router.push(`/events/${updatedEvent._id}`)
+           }
+        } catch (error) {
+            
+        }
+    }
+
+  
 
 }
   return (
